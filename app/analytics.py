@@ -13,12 +13,23 @@ def analyze_notes(db: Session):
     notes_data["word_count"] = notes_data["content"].apply(
         lambda x: len(re.findall(r"\w+", x))
     )
-    total_word_count = int(notes_data["word_count"].sum())
-    avg_note_length = float(notes_data["word_count"].mean())
+
+    total_word_count = (
+        int(notes_data["word_count"].sum())
+        if not notes_data["word_count"].isnull().all()
+        else 0
+    )
+    avg_note_length = (
+        float(notes_data["word_count"].mean())
+        if not notes_data["word_count"].isnull().all()
+        else 0.0
+    )
+
     all_words = " ".join(notes_data["content"]).lower()
     words = re.findall(r"\w+", all_words)
     common_words = Counter(words).most_common(10)
     sorted_notes = notes_data.sort_values(by="word_count")
+
     longest_notes = sorted_notes.tail(3)["id"].tolist()
     shortest_notes = sorted_notes.head(3)["id"].tolist()
 

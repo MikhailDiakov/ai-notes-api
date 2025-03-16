@@ -29,6 +29,7 @@ env/
 
 # pytest
 .cache/
+.pytest_cache
 
 # IDE specific files
 .vscode/

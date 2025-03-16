@@ -1,11 +1,10 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime
-from typing import List, Optional
 
 
 class NoteBase(BaseModel):
-    title: str
-    content: str
+    title: str = Field(..., min_length=1)
+    content: str = Field(..., min_length=1)
 
 
 class NoteCreate(NoteBase):
@@ -13,7 +12,7 @@ class NoteCreate(NoteBase):
 
 
 class NoteUpdate(BaseModel):
-    content: str
+    content: str = Field(..., min_length=1)
 
 
 class NoteResponse(NoteBase):
@@ -22,4 +21,4 @@ class NoteResponse(NoteBase):
     updated_at: datetime
 
     class Config:
-        orm_mode = True
+        model_config = ConfigDict(from_attributes=True)
