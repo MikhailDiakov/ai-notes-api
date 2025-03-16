@@ -38,5 +38,9 @@ This script summarizes the provided text using the **Gemini AI API**.
 
 # Testing
 
-- **Pytest**: docker-compose --profile test up
+- **Pytest**:
+  ```
+  docker-compose --profile test up
+  ```
+  or in the “fastapi_app” docker container.
 - Pytest will also show a coverage of around 99%.
