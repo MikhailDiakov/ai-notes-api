@@ -1,12 +1,14 @@
 import pandas as pd
 import re
 from collections import Counter
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 from .models import Note
 
 
-def analyze_notes(db: Session):
-    notes = db.query(Note).all()
+async def analyze_notes(db: AsyncSession):
+    result = await db.execute(Note.__table__.select())
+    notes = result.fetchall()
+
     notes_data = pd.DataFrame(
         [(note.id, note.content) for note in notes], columns=["id", "content"]
     )

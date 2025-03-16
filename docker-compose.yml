@@ -67,7 +67,7 @@ services:
     entrypoint:
       [
         "pytest",
-        "--maxfail=5",
+        "--maxfail=25",
         "--disable-warnings",
         "-q",
         "--cov=app",
