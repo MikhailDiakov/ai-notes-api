@@ -52,5 +52,5 @@ async def summarize_note(note_id: int, db: AsyncSession = Depends(get_db)):
     if not note:
         raise HTTPException(status_code=404, detail="Note not found")
 
-    summary = await ai_integration.summarize_text(note.content)  # Добавляем await
+    summary = await ai_integration.summarize_text(note.content)
     return {"summary": summary}

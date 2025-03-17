@@ -43,4 +43,8 @@ This script summarizes the provided text using the **Gemini AI API**.
   docker-compose --profile test up
   ```
   or in the “fastapi_app” docker container.
-- Pytest will also show a coverage of around 99%.
+- Pytest will also show a coverage of around 95%.
+
+# Version history
+
+-all note versions are stored in the postgres table note_versions.
